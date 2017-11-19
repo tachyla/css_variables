@@ -18,13 +18,25 @@
     <input id="base" type="color" name="base" value="#ffc600">
   </div>
 
-  <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
+  <img src="Dom_Kennedy_Yellow_Album.jpg">
 
   <style>
+ 
+   :root{
+     --base: #00aeff;
+     --spacing: 10px;
+     --blur: 10px;
+   }
 
-    /*
-      misc styles, nothing to do with CSS variables
-    */
+   img{
+     padding: var(--spacing);
+     background: var(--base);
+     filter: blur(var(--blur)); 
+   }
+
+   .hl {
+     color: var(--base);
+   }
 
     body {
       text-align: center;
@@ -42,9 +54,31 @@
     input {
       width:100px;
     }
+
+
   </style>
 
   <script>
+    //target both the .controls class and input elements 
+    const inputs = document.querySelectorAll(".controls input");
+    console.log(inputs);
+
+    //this callback executes when a change occurs 
+   function handleUpdate() {
+    //console.log(this.value);
+    //const captures the dataset suffix "data-" 
+    // console.log(this.dataset); displays all the attributes that exist within that dataset & if its not an attribute in the input's dataset it doesn't appear
+    const suffix = this.dataset.sizing || "";
+    //console.log(suffix);
+    //select the entire document
+    //console.log(this.name);
+    document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+    //add the suffix to the value to update the value 
+    }
+
+    inputs.forEach(input => input.addEventListener("change", handleUpdate ));
+    inputs.forEach(input => input.addEventListener("mousemove", handleUpdate));
+
   </script>
 
 </body>
