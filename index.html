@@ -59,19 +59,20 @@
   </style>
 
   <script>
-    //target both the .controls class and input elements 
+    //Start by targeting both the .controls class and input element   
     const inputs = document.querySelectorAll(".controls input");
     console.log(inputs);
 
-    //this callback executes when a change occurs 
+    //this callback executes when a "change" or "mousemove" occur on the DOM
    function handleUpdate() {
-    //console.log(this.value);
-    //const captures the dataset suffix "data-" 
-    // console.log(this.dataset); displays all the attributes that exist within that dataset & if its not an attribute in the input's dataset it doesn't appear
+    // console.log(this.value);
+    //const captures the dataset's suffix, in our case look for "data-" attribute
+
+    //console.log(this.dataset); displays all the attributes that exist within that dataset & if its not an attribute in the input's dataset it doesn't appear
     const suffix = this.dataset.sizing || "";
     //console.log(suffix);
-    //select the entire document
-    //console.log(this.name);
+
+    console.log(this.name);
     document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
     //add the suffix to the value to update the value 
     }
